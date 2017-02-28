@@ -1,0 +1,666 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%%      EPITECH
+%%% B PAV 442
+%%%
+%%% subject C++ Day 6
+%%%                Eleanor TUTTLE @ December 2016
+%%%                Nicolas PHISTER
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    MANDATORY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\versionNum}		{v1.6.5}
+\renewcommand{\moduleCode}		{B-PAV-242}
+\renewcommand{\subjectTitle}		{Day 06}
+\renewcommand{\binaryName}		{no binary}
+\renewcommand{\repository}		{cpp\_d06}
+\renewcommand{\subjectSubTitle}		{IOStream, String and Objects}
+\renewcommand{\devLanguage}		{C++}
+\renewcommand{\groupSize}		{1}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    INIT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\init
+\printPresPage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    SUBJECT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{\subjectTitle}{\subjectSubTitle}
+\printFormalities[0]
+{
+  \warn{If you do half the exercises because you have comprehension problems, it's okay, it happens. But if you do half the exercises because you're lazy, and leave at 2PM, you WILL have problems. Do NOT tempt the devil.}
+
+  \warn{Every function implemented in a header, or unprotected header, leads to 0 to the exercise.\newline Every class must possess a constructor and a destructor.}
+
+  \hint{Every output goes to the standard output, and will be ended by a newline, unless specified otherwise.}
+
+  \warn{Any use of "friend" will result in the grade -42 no questions asked.}
+
+  \hint{To avoid compilation problems, please include necessary files within your headers.}
+
+  Please note that none of your files must contain the main function except when explicitly asked. We will use our own main function to compile and test your code.
+}
+
+\newpage
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 00
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 00}{my\_cat}
+\printCPPExerciseFormalities
+{/ex00}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{Makefile with 'all', 'clean', 'fclean' and 're' rules and program files}
+{*alloc, free, *printf, open, fopen - using key word}
+{2}
+
+\hint{Please turn in your complete program, as well as your main.}
+Your Makefile must generate a binary file named \textbf{my\_cat}.\\
+
+You must write a simplified \textbf{CAT(1)} command. This command must take one, or several, files as parameters, and will not handle the standard input.\\
+
+In the event of an error (file not found, permission denied etc.), you must print the following on the error output:
+
+\begin{lstlisting}
+my_cat: <file>: No such file or directory
+\end{lstlisting}
+
+\hint
+{
+  \textbf{file} is replaced with the name of the file that can't be read.
+}
+
+If no parameters are given to your \textbf{my\_cat}, you must print the following on the standard output:
+
+\begin{lstlisting}
+my_cat: Usage: ./my_cat file [...]
+\end{lstlisting}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 01
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 01}{Temperature Conversion}
+\printCPPExerciseFormalities
+{/ex01}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{Makefile with 'all', 'clean', 'fclean' and 're' rules, and program files}
+{*alloc, free, *printf, open, fopen, *scanf - using key word}
+{2}
+
+\hint{Please turn in your complete program, as well as your main.}
+
+Your Makefile must generate a binary file named \textbf{my\_convert\_temp}.\\
+The purpose of this exercise is to write a program that will convert temperatures from the \textbf{Celsius} scale to the \textbf{Fahrenheit} scale, and vice versa.\\
+The conversion formula is as follows (yes, we agree, it's not the most accurate one!):
+
+\begin{lstlisting}
+Celsius = 5.0 / 9.0 * (Fahrenheit - 32)
+\end{lstlisting}
+
+Your program will read from the standard input, separated by one or more spaces, a temperature and a scale.\\
+
+For example:\\
+\terminal{./my\_convert\_temp}
+{
+  -10 Celsius\\
+	14.000       Fahrenheit
+}
+\terminal{./my\_convert\_temp}
+{
+  46.400 Fahrenheit\\
+	8.000	     Celsius
+}
+
+Results must be displayed in two columns, aligned on the right and with a padding
+of 16 and a 1000th precision.
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 02
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 02}{Hospital - The Patient}
+\printCPPExerciseFormalities
+{/ex02}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{sickkoala.[h,cpp]}
+{*alloc, free, *printf, open, fopen - using key word}
+{3}
+
+You will now be working on a simulation of your dear Koalas' health. In order to begin, you need patients. Therefore you need to create the \textbf{SickKoala} class.\\
+Here is the information that will let you code the class:
+
+\begin{itemize}
+
+  \item They cannot be instantiated without a \textbf{string} name.
+
+  \item Following their destruction, the standard output must display the following:
+    \begin{lstlisting}
+Mr. [name]: Kreooogg!! Je suis gueriiii!
+    \end{lstlisting}
+
+  \item They have a \textbf{poke} member function, which takes no parameters and
+    returns nothing. When called, it displays:
+    \begin{lstlisting}
+Mr. [name]: Gooeeeeerrk!! :'(
+    \end{lstlisting}
+
+  \item They have a \textbf{takeDrug} member function with a \textbf{string} as
+    parameter. It returns \textbf{true} if the \textbf{string} matches one of the
+    following possibilities:\\
+
+    - \textbf{mars} (not case-sensitive), displays:
+    \begin{lstlisting}
+Mr. [name]: Mars, et ca kreog!
+    \end{lstlisting}
+
+    - \textbf{Buronzand} (case-sensitive), displays:
+    \begin{lstlisting}
+Mr. [name]: Et la fatigue a fait son temps!
+    \end{lstlisting}
+
+  \item In any other case, the function returns \textbf{false} and displays:
+    \begin{lstlisting}
+Mr. [name]: Goerkreog!
+    \end{lstlisting}
+
+  \item Sometimes SickKoalas can get delirious when their fevers are too high.
+    In order to simulate this, SickKoalas have the \textbf{overDrive} member function,
+    which returns nothing and takes a \textbf{string} as parameter. This member
+    function displays the string passed as parameter preceded by \textbf{"Mr. [name]:"},
+    and with all occurrences of \textbf{"Kreog!"} are replaced with \textbf{"1337!"}.\\
+
+    For example, the string \textbf{"Kreog! Ca boume ?} will become
+    \textbf{Mr. [name]: 1337! Ca boume ?}.
+\end{itemize}
+
+\warn
+{
+  For each of this exercise's outputs, all \textbf{[name]}s must be replaced with
+  the SickKoala's name.\newline
+
+  Every output must be followed by a newline, unless otherwise specified.
+}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 03
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 03}{Hospital - The Nurse}
+\printCPPExerciseFormalities
+{/ex03}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{koalanurse.[h,cpp], sickkoala.[h,cpp]}
+{*alloc, free, *printf, open, fopen - using key word}
+{3}
+
+Now that we have patients, we need a nurse to take care of them.\\
+Therefore, you will now be coding the koalas' nurse: The KoalaNurse.\\
+Here is the necessary information to create the KoalaNurse:\\
+\begin{itemize}
+
+  \item Each KoalaNurse has a numerical identifier (ID), which must be provided
+    when the object is created. (It is not possible to create a Nurse without
+    specifying its ID.)
+
+  \item When the Nurse is destroyed, it'll express its relief as follows:
+    \begin{lstlisting}
+Nurse [ID]: Enfin un peu de repos!
+    \end{lstlisting}
+
+  \item The nurse can give drugs to the patient, thanks to the \textbf{giveDrug}
+    member function, which has the following parameters: a string (Drug) and a
+    pointer to the patient.\\
+    This member function does not return anything, and then the nurse gives the
+    patient their medication.\\
+
+  \item The nurse can read the doctor's report, thanks to the \textbf{readReport}
+    member function, which takes a \textbf{string} file name as parameter.\\
+
+    - The file is built from the sick Koala's name, followed by the \textbf{.report}
+    extension.\\
+    - The file contains the name of the drug to be given to the patient.\\
+    - The member function returns the name of the drug (\textbf{string}) and
+    displays the following on the standard output:
+    \begin{lstlisting}
+       Nurse [ID]: Kreog! Il faut donner un [drugName] a Mr.[patientName]!
+    \end{lstlisting}
+
+    If the \textbf{.report} file doesn't exist, or if it isn't valid, nothing should
+    be displayed and the return value will be an empty \textbf{string}.\\
+
+  \item The nurse can clock-in thanks to the \textbf{timeCheck} member function,
+    which takes no parameters and doesn't return anything. The nurse calls this
+    member function when it starts and stops working (it is very diligent).\\
+
+    When it clocks-in at the start of its job, it displays:
+    \begin{lstlisting}
+Nurse [ID]: Je commence le travail!
+    \end{lstlisting}
+
+    When it stops working:
+    \begin{lstlisting}
+Nurse [ID]: Je rentre dans ma foret d'eucalyptus!
+    \end{lstlisting}
+
+    It is up to you to figure out when it starts and stops working. By default,
+    when the program starts, the nurse isn't working yet. As the KoalaNurse is
+    very diligent, it will accept any job, even outside the hospital. Only a call
+    to the \textbf{timeCheck} member function can switch the KoalaNurse's working
+    status: if it is not working, it will start, and vice versa.
+\end{itemize}
+
+\warn{You will replace \textbf{[ID]} with the KoalaNurse ID for the display.}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 04
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 04}{Hospital - The Doctor}
+\printCPPExerciseFormalities
+{/ex04}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{koalanurse.[h,cpp], sickkoala.[h,cpp], koaladoctor.[h,cpp]}
+{*alloc, free, *printf, open, fopen, srand, srandom - using key word}
+{3}
+
+First, modify your previous classes by adding a \textbf{getName} member function
+to the \textbf{SickKoala} class, that takes no parameter and returns the patient's
+name (\textbf{string}).\\
+
+We have patients, and nurses taking care of them.\\
+We now need doctors to give the nurses their instructions. You will code a doctor
+simulation, with the \textbf{KoalaDoctor} class.\\
+
+Here's what we know about \textbf{KoalaDoctor}:
+\begin{itemize}
+
+  \item He must be instantiated with a \textbf{string} name. During the construction,
+    he must display the following on the standard output:
+    \begin{lstlisting}
+Dr. [name]: Je suis le Dr.[name]! Comment Kreoggez-vous ?
+    \end{lstlisting}
+
+  \item He can diagnose a patient thanks to the \textbf{diagnose} member function,
+    which takes a pointer to the patient to be diagnosed as parameter.\\
+    This member function displays the following on the standard output:
+    \begin{lstlisting}
+Dr. [name]: Alors, qu'est-ce qui vous goerk, Mr.[patientName] ?
+    \end{lstlisting}
+
+    It then calls the SickKoala's \textbf{poke} member function. The doctor writes
+    a report for the nurses, in a file named \textbf{[patientName].report}. This
+    file contains the name of the drug to be given to the patient. The name will
+    be randomly chosen from the following list:\\
+    - \textbf{mars}\\
+    - \textbf{Buronzand}\\
+    - \textbf{Viagra}\\
+    - \textbf{Extasy}\\
+    - \textbf{Feuille d'eucalyptus}\\
+
+    For this purpose, you must use \textbf{random() \%5}, on the previous list and
+    follow the given order. The \textbf{srandom} function will be called in the
+    correction's main.\\
+
+  \item The KoalaDoctor clocks-in with the \textbf{timeCheck} member function, which
+    neither accepts parameters nor returns anything, when it starts working and vice
+    versa.\\
+    When it starts working, it displays:
+    \begin{lstlisting}
+Dr.[name]: Je commence le travail!
+    \end{lstlisting}
+
+    When it stops working, it displays:
+    \begin{lstlisting}
+Dr.[name]: Je rentre dans ma foret d'eucalyptus!
+    \end{lstlisting}
+
+    As the KoalaDoctor is very diligent, it accepts any job, even outside the hospital.
+\end{itemize}
+
+\warn
+{
+  All \textbf{[name]}s must be replaced with the name of the KoalaDoctor that is
+  creating the output (the name with which you intitialized your KoalaDoctor, for
+  instance). As for the \textbf{[patientName]}, you must replace those with the name
+  of the SickKoala that the KoalaDoctor instance is currently handling.
+}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 05
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 05}{Hospital - How to handle it all}
+\printCPPExerciseFormalities
+{/ex05}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{koalanurse.[h,cpp], sickkoala.[h,cpp], koaladoctor.[h,cpp], koalanurselist.[h,cpp],
+sickkoalalist.[h,cpp], koaladoctorlist.[h,cpp]}
+{*alloc, free, *printf, open, fopen, srand, srandom - using key word}
+{3}
+
+\hint{At this point, recursive programming can save you a lot of development time...}
+
+You must modify the following classes for this exercise: \textbf{KoalaNurse}
+and \textbf{KoalaDoctor}.
+\begin{itemize}
+
+  \item Add a \textbf{getID} member function to the \textbf{KoalaNurse} class.
+    The function returns an int and takes no parameters.
+
+  \item Add a \textbf{getName} member function to the \textbf{KoalaDoctor} class.
+    The function returns a string and takes no parameters.
+\end{itemize}
+
+Now we need to take a look at all these people working together in harmony. It
+is necessary to be able to handle several patients, doctors and/or nurses at the
+same time. In order to do be able to do this, you must code a list for each category.
+\hint{A list's node is a List* object.}
+
+First we need to build lists.\\
+~\\
+
+\textbf{The SickKoalaList class:}
+\begin{itemize}
+
+  \item When constructed, takes a pointer to \textbf{SickKoala}. The pointer can
+    be \textbf{NULL}.
+
+  \item Has an \textbf{isEnd} member function, which does not take any parameter
+    and returns a boolean that is true if the \textbf{SickKoalaList} is the last
+    element of its list.
+
+  \item Has an \textbf{append} member function, which takes a pointer to
+    \textbf{SickKoalaList} as parameter and does not return anything. The node
+    passed as parameter is added to the end of the linked list.
+
+  \item Has a \textbf{getFromName} member function, which takes a string as
+    parameter and returns the pointer to the first \textbf{SickKoala} whose
+    name matches the string passed as parameter. If no such \textbf{SickKoala}
+    is in the list, the function will return a null pointer.
+
+  \item Has a \textbf{remove} member function, which takes a pointer to
+    \textbf{SickKoalaList} as parameter and removes the \textbf{SickKoalaList} that
+    matches the pointer to the list. This member function returns a pointer to
+    the first node of the linked list.	
+
+  \item Has a \textbf{removeFromName} member function, which takes a string as
+    parameter and removes the first \textbf{SickKoalaList} whose name
+    matches the string passed as parameter from the list. This member function
+    returns a pointer to the first node of the list.
+
+
+  \item Has a \textbf{dump} member function, with no parameters, that does not
+    return anything. This member function displays the name of all the
+    \textbf{SickKoalas} in the list, complying with the list's sorting order
+    (begin --> end):
+    \begin{lstlisting}
+        Liste des patients: [name1], [name2], ..., [nameX].
+    \end{lstlisting}
+    If an element is missing, the name to be displayed is \textbf{[NULL]}.
+
+  \item Has a \textbf{getContent} member function, with no parameters, that returns
+    a pointer to the element within the current node of the list.
+
+  \item Has a \textbf{getNext} member function, with no parameters, that returns
+    a pointer to the list's next node. If there is no next node, then it
+    returns \textbf{(NULL)}.
+\end{itemize}
+~\\
+
+\textbf{The KoalaNurseList Class:}
+\begin{itemize}
+
+  \item When constructed, takes a pointer to \textbf{KoalaNurse}. This pointer
+    can be \textbf{NULL}.
+
+  \item Has an \textbf{isEnd} member function, which does not take any parameters and
+    returns a boolean that is true if the \textbf{KoalaNurseList} is the last element
+    in the list one.
+
+  \item Has an \textbf{append} member function, which takes a pointer to
+    \textbf{KoalaNurseList} as parameter and does not return anything. The node
+    passed as parameter is added to the end of the list.
+
+  \item Has a \textbf{getFromID} member function, which takes an \textbf{int} as
+    parameter and returns a pointer to the first \textbf{KoalaNurse} whose ID matches
+    the \textbf{int} passed as parameter. If no such \textbf{KoalaNurse} is in the
+    list, the function will return a null pointer.
+
+
+  \item Has a \textbf{remove} member function, which takes a pointer to
+    \textbf{KoalaNurseList} as parameter and removes the \textbf{KoalaNurseList}
+    that matches the pointer from the list. This member function returns a pointer
+    to the first node of the list.
+
+  \item Has a \textbf{removeFromID} member function, which takes an \textbf{integer}
+    as parameter. This member function removes the first \textbf{KoalaNurseList} whose
+    ID matches the \textbf{integer} passed as parameter from the list. This member
+    function returns a pointer to the first node of the list.
+
+  \item Has a \textbf{dump} member function, with no parameters, that does not return
+    anything. This member function displays the name of all the \textbf{KoalaNurses}
+    in the list, complying with the list's sorting order (begin --> end):
+    \begin{lstlisting}
+       Liste des infirmieres: [id1], [id2], ..., [idX].
+    \end{lstlisting}
+    If an element is missing, the name to be displayed is \textbf{[NULL]}.
+\end{itemize}
+~\\
+
+\textbf{The KoalaDoctorList Class:}
+\begin{itemize}
+  \item When constructed, takes a pointer to \textbf{KoalaDoctor}. This pointer
+    can be \textbf{NULL}.
+
+  \item Has an \textbf{isEnd} member function, which does not take any parameters
+    and returns a boolean which is true if the \textbf{KoalaDoctorList} is the
+    last element of its list.
+
+  \item Has an \textbf{append} member function, which takes a pointer to
+    \textbf{KoalaDoctorList} as parameter and does not return anything. The node
+    passed as parameter is added to the end of the list.
+
+  \item Has a \textbf{getFromName} member function, which takes a string as parameter
+    and returns the first \textbf{KoalaDoctor} whose name matches the string passed
+    as parameter from the list. If no such \textbf{KoalaDoctor} is in the list, the
+    function will return a null pointer.
+
+
+  \item Has a \textbf{remove} member function, which takes a pointer to
+    \textbf{KoalaDoctorList} as parameter and removes the \textbf{KoalaDoctorList}
+    that matches the pointer from the list.\\
+    This member function returns a pointer to the first node of the list.
+
+  \item Has a \textbf{removeFromName} member function, which takes a string as
+    parameter. This member function removes the first \textbf{KoalaDoctorList} whose
+    name matches the string passed as parameter from the list. This member function
+    returns a pointer to the first node of the list.
+
+  \item Has a \textbf{dump} member function, with no parameters, that does not return
+    anything. This member function displays the name of all the \textbf{KoalaDoctors}
+    in the list, complying with the list's sorting order (begin --> end):
+    \begin{lstlisting}
+      Liste des medecins: [name1], [name2], ..., [nameX].
+    \end{lstlisting}
+    If an element is missing, the name to be displayed is \textbf{[NULL]}.
+\end{itemize}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    Exercise 06
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printTitle{Exercise 06}{The Hospital}
+\printCPPExerciseFormalities
+{/ex06}
+{g++ -Wall -Wextra -Werror -std=c++03}
+{koalanurse.[h,cpp], sickkoala.[h,cpp], koaladoctor.[h,cpp], koalanurselist.[h,cpp],
+sickkoalalist.[h,cpp], koaladoctorlist.[h,cpp], hospital.[h,cpp]}
+{*alloc, free, *printf, open, fopen, srand, srandom - using key word}
+{4}
+
+Now you can manage several patients, nurses and doctors. So we can move on and
+manage the entire hospital!\\
+
+Now you're going to code without any help.\\
+
+You must deduce the hospital's member functions from the test main, as described below.\\
+
+The hospital must distribute the work between the doctors and the nurses.\\
+
+For this exercise, you might have to modify existing classes. You are responsible for
+these modifications, as long as they comply with the previous exercises'
+requirements/descriptions!\\
+
+~\\
+This is a main for a test with the expected output:
+\begin{lstlisting}
+#include <iostream>
+#include <string>
+#include <cstdlib>
+
+#include "sickkoala.h"
+#include "koalanurse.h"
+#include "koaladoctor.h"
+#include "sickkoalalist.h"
+#include "koalanurselist.h"
+#include "koaladoctorlist.h"
+#include "hospital.h"
+
+int main()
+{
+   srandom(42);
+
+   KoalaDoctor cox("Cox");
+   KoalaDoctor house("House");
+   KoalaDoctor tired("Boudur-Oulot");
+   KoalaDoctorList doc1(&cox);
+   KoalaDoctorList doc2(&house);
+   KoalaDoctorList doc3(&tired);
+
+   KoalaNurse a(1);
+   KoalaNurse b(2);
+   KoalaNurseList nurse1(&a);
+   KoalaNurseList nurse2(&b);
+
+   SickKoala cancer ("Ganepar");
+   SickKoala gangrene ("Scarface");
+   SickKoala measles ("RedFace");
+   SickKoala smallpox ("Varia");
+   SickKoala fracture ("Falter");
+   SickKoalaList sick1(&cancer);
+   SickKoalaList sick2(&gangrene);
+   SickKoalaList sick3(&measles);
+   SickKoalaList sick4(&smallpox);
+   SickKoalaList sick5(&fracture);
+
+   {
+      Hospital stAnne;
+
+      stAnne.addDoctor(&doc1);
+      stAnne.addDoctor(&doc2);
+      stAnne.addDoctor(&doc3);
+      stAnne.addSick(&sick1);
+      stAnne.addSick(&sick2);
+      stAnne.addSick(&sick3);
+      stAnne.addSick(&sick4);
+      stAnne.addSick(&sick5);
+      stAnne.addNurse(&nurse1);
+      stAnne.addNurse(&nurse2);
+
+      stAnne.addSick(&sick4);
+
+      stAnne.run();
+   }
+
+   if (nurse1.isEnd() && sick1.isEnd() && doc1.isEnd())
+      std::cout <<"Lists cleaned up." <<std::endl;
+   else
+      std::cerr <<"You fail! Boo!" <<std::endl;
+
+   return (0);
+}
+\end{lstlisting}
+
+~\\
+Next page is the expected output:
+\newpage
+\terminal{./day05}
+{
+  Dr. Cox: Je suis le Dr.Cox! Comment Kreoggez-vous ?\\
+  Dr. House: Je suis le Dr.House! Comment Kreoggez-vous ?\\
+  Dr. Boudur-Oulot: Je suis le Dr.Boudur-Oulot! Comment Kreoggez-vous ?\\
+  {[HOSPITAL]} Doctor Cox just arrived!\\
+  Dr.Cox: Je commence le travail!\\
+  {[HOSPITAL]} Doctor House just arrived!\\
+  Dr.House: Je commence le travail!\\
+  {[HOSPITAL]} Doctor Boudur-Oulot just arrived!\\
+  Dr.Boudur-Oulot: Je commence le travail!\\
+  {[HOSPITAL]} Patient Ganepar just arrived!\\
+  {[HOSPITAL]} Patient Scarface just arrived!\\
+  {[HOSPITAL]} Patient RedFace just arrived!\\
+  {[HOSPITAL]} Patient Varia just arrived!\\
+  {[HOSPITAL]} Patient Falter just arrived!\\
+  {[HOSPITAL]} Nurse 1 just arrived!\\
+  Nurse 1: Je commence le travail!\\
+  {[HOSPITAL]} Nurse 2 just arrived!\\
+  Nurse 2: Je commence le travail!\\
+  {[HOSPITAL]} Debut du travail avec:\\
+  Liste des medecins: Cox, House, Boudur-Oulot.\\
+  Liste des infirmieres: 1, 2.\\
+  Liste des patients: Ganepar, Scarface, RedFace, Varia, Falter.\\
+  \\
+  Dr. Cox: Alors, qu'est-ce qui vous goerk, Mr.Ganepar ?\\
+  Mr. Ganepar: Gooeeeeerrk!! :'(\\
+  Nurse 1: Kreog! Il faut donner un Buronzand a Mr.Ganepar!\\
+  Mr. Ganepar: Et la fatigue a fait son temps!\\
+  Dr. House: Alors, qu'est-ce qui vous goerk, Mr.Scarface ?\\
+  Mr. Scarface: Gooeeeeerrk!! :'(\\
+  Nurse 2: Kreog! Il faut donner un mars a Mr.Scarface!\\
+  Mr. Scarface: Mars, et ca kreog!\\
+  Dr. Boudur-Oulot: Alors, qu'est-ce qui vous goerk, Mr.RedFace ?\\
+  Mr. RedFace: Gooeeeeerrk!! :'(\\
+  Nurse 1: Kreog! Il faut donner un Buronzand a Mr.RedFace!\\
+  Mr. RedFace: Et la fatigue a fait son temps!\\
+  Dr. Cox: Alors, qu'est-ce qui vous goerk, Mr.Varia ?\\
+  Mr. Varia: Gooeeeeerrk!! :'(\\
+  Nurse 2: Kreog! Il faut donner un Buronzand a Mr.Varia!\\
+  Mr. Varia: Et la fatigue a fait son temps!\\
+  Dr. House: Alors, qu'est-ce qui vous goerk, Mr.Falter ?\\
+  Mr. Falter: Gooeeeeerrk!! :'(\\
+  Nurse 1: Kreog! Il faut donner un Viagra a Mr.Falter!\\
+  Mr. Falter: Goerkreog!\\
+  Nurse 1: Je rentre dans ma foret d'eucalyptus!\\
+  Nurse 2: Je rentre dans ma foret d'eucalyptus!\\
+  Dr.Cox: Je rentre dans ma foret d'eucalyptus!\\
+  Dr.House: Je rentre dans ma foret d'eucalyptus!\\
+  Dr.Boudur-Oulot: Je rentre dans ma foret d'eucalyptus!\\
+  Lists cleaned up.\\
+  Mr. Falter: Kreooogg!! Je suis gueriiii!\\
+  Mr. Varia: Kreooogg!! Je suis gueriiii!\\
+  Mr. RedFace: Kreooogg!! Je suis gueriiii!\\
+  Mr. Scarface: Kreooogg!! Je suis gueriiii!\\
+  Mr. Ganepar: Kreooogg!! Je suis gueriiii!\\
+  Nurse 2: Enfin un peu de repos!\\
+  Nurse 1: Enfin un peu de repos!
+}
